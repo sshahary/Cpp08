@@ -6,7 +6,7 @@
 /*   By: sshahary <sshahary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 05:11:57 by sshahary          #+#    #+#             */
-/*   Updated: 2024/08/06 17:30:40 by sshahary         ###   ########.fr       */
+/*   Updated: 2024/08/06 18:19:58 by sshahary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ Span &Span::operator=(const Span &other)
 	return *this;
 }
 
+Span::~Span(){}
+
 void Span::addNumber(int number)
 {
 	if (numbers.size() >= maxSize)
@@ -33,6 +35,15 @@ void Span::addNumber(int number)
 		throw SpanFullException();
 	}
 	numbers.push_back(number);
+}
+
+void Span::addNumbers(std::vector<int>::iterator begin, std::vector<int>::iterator end)
+{
+		while (begin != end)
+		{
+			addNumber(*begin);
+			++begin;
+		}
 }
 
 int Span::shortestSpan() const
